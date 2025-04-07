@@ -329,10 +329,8 @@ void gameRun() {
     Color GRAY3 = {180, 180, 180, 255};
     Color MARK = {185, 134, 134, 255};
 
-    Texture2D mainSprite =  LoadTexture("images/koalaokPixel.png");
     Texture2D shovelSprite = LoadTexture("images/shovel.png");
     Texture2D flagSprite = LoadTexture("images/flag.png");
-    Texture2D noteSpite = LoadTexture("images/note.png");
     
     InitAudioDevice();
     
@@ -343,11 +341,6 @@ void gameRun() {
     Sound snd_dumbvictory = LoadSound("audios/snd-dumbvictory.mp3");
     Sound select_sound = LoadSound("audios/undertale-select-sound.mp3");
     Sound snd_escaped = LoadSound("audios/snd-escaped.mp3");
-    
-    vector <Music> musics = {LoadMusicStream("audios/musics/222.mp3"), LoadMusicStream("audios/musics/escolha_errada.mp3"), LoadMusicStream("audios/musics/hmu.mp3"), LoadMusicStream("audios/musics/i_wish_you_love.mp3"), LoadMusicStream("audios/musics/o_carente.mp3"), LoadMusicStream("audios/musics/megalovania.mp3"), LoadMusicStream("audios/musics/take_over.mp3"), LoadMusicStream("audios/musics/feather.mp3")};
-    vector <string> playing = {"222 - mcvert", "Escolha Errada - Júlio Victor", "HMU - Tobias Dray", "I Wish You Love - Laufey", "O Carente - Júlio Victor", "Megalovania - Toby Fox", "Take Over - LOL", "Feather - Sabrina Carpenter"};
-    int actualMusic = 0;
-    bool musicEnd = true;
     
     int chronometer = 0;
     
@@ -362,26 +355,11 @@ void gameRun() {
     vector <string> buttonsTitle = {"Easy", "Medium", "Hard"};
     
     while (!WindowShouldClose()) {
-        if (musicEnd) {
-            actualMusic = Random::gen(0, musics.size() - 1);
-            PlayMusicStream(musics[actualMusic]);
-            SetMusicPan(musics[actualMusic], 0.0f);
-            musicEnd = false;
-        }
-        if (IsKeyPressed(KEY_RIGHT)) {
-            actualMusic = Random::gen(0, musics.size() - 1);
-            PlayMusicStream(musics[actualMusic]);
-            SetMusicPan(musics[actualMusic], 0.0f);
-        }
-        if (GetMusicTimePlayed(musics[actualMusic]) < GetMusicTimeLength(musics[actualMusic])) UpdateMusicStream(musics[actualMusic]);
-        else { musicEnd = true; } 
         if (stage == State::startScreen) {
             BeginDrawing();
             
             ClearBackground(WHITE);
-            
-            DrawTexture(mainSprite, Constants::windowX / 2 - 192, 10, WHITE);
-            
+                        
             if (timer(GetTime(), screenTime, 1.0f)) {
                 DrawText("Happy Birthday! Press Enter to begin!", Constants::windowX / 32 * 4.5, Constants::windowY / 10 * 6, 30, BLACK);
                 if (timer(GetTime(), screenTime, 2.0f)) screenTime = GetTime();
@@ -400,13 +378,6 @@ void gameRun() {
             BeginDrawing();
             
             ClearBackground(BLACK);
-            
-            DrawTexture(noteSpite, Constants::windowX / 4.5, Constants::windowY / 64, WHITE);
-            DrawText(("Listening: " + playing[actualMusic]).c_str(), Constants::windowX / 3, Constants::windowY / 32, 20, WHITE);
-            if (timer(GetTime(), screenTime, 1.0f)) {
-                DrawText("Press Right Key to change the song!", Constants::windowX / 3, Constants::windowY / 32 * 3, 20, WHITE);
-                if (timer(GetTime(), screenTime, 2.0f)) screenTime = GetTime();
-            }
             
             DrawText("Choose your game!", Constants::windowX / 32 * 12, Constants::windowY / 10 * 3, 25, WHITE);
             
@@ -519,9 +490,6 @@ void gameRun() {
     UnloadSound(snd_dumbvictory);
     UnloadSound(select_sound);
     UnloadSound(snd_escaped);
-    for (int i = 0; i < (int) musics.size(); ++i) {
-        UnloadMusicStream(musics[i]);
-    }
 }
 
 int main() {
