@@ -18,19 +18,19 @@ struct Resources {
     
     void loadMusics() {
         musics = {
-            // {"main_title_music", LoadMusicStream("sfx/main_title_music.mp3")},
-            // {"menu_music", LoadMusicStream("sfx/menu_music.mp3")},
-            // {"playing_music", LoadMusicStream("sfx/playing_music.mp3")},
-            // {"game_over_music", LoadMusicStream("sfx/game_over_music.mp3")}
+            {"main_title_music", LoadMusicStream("sfx/main_title_music.mp3")},
+            {"menu_music", LoadMusicStream("sfx/menu_music.mp3")},
+            {"playing_music", LoadMusicStream("sfx/playing_music.mp3")},
+            {"game_over_music", LoadMusicStream("sfx/game_over_music.mp3")}
         };
     }
     void loadSounds() {
         sounds = {
-            {"explosion_sound", LoadSound("sfx/mus-eplosion.mp3")},
+            {"explosion_sound", LoadSound("sfx/mus-explosion.mp3")},
             {"swipe_sound", LoadSound("sfx/mus-sfx-swipe.mp3")},
             {"buyitem_sound", LoadSound("sfx/snd-sfx-buyitem.mp3")},
             {"dumbvictory_sound", LoadSound("sfx/snd-sfx-dumbvictory.mp3")},
-            {"escaped_sound", LoadSound("sfx/mus-snd-escaped.mp3")},
+            {"escaped_sound", LoadSound("sfx/snd-escaped.mp3")},
             {"switchpull_sound", LoadSound("sfx/snd-sfx-switchpull.mp3")},
             {"select_sound", LoadSound("sfx/undertale-select-sound.mp3")},
         };
